@@ -1,254 +1,358 @@
+/*
+  FRAME CELEBRITY GALLERY
+  Latest Indian celebrity entries appear FIRST.
+  Images are searched on Wikimedia Commons.
+  No API key is required.
+*/
+
+// =====================================================
+// LATEST ENTRIES — INDIAN FEMALE CELEBRITIES
+// These appear at the beginning of the gallery.
+// =====================================================
+
+const LATEST_ENTRIES = [
+  // Bollywood / Hindi
+  "Alia Bhatt",
+  "Deepika Padukone",
+  "Katrina Kaif",
+  "Kareena Kapoor Khan",
+  "Priyanka Chopra",
+  "Kiara Advani",
+  "Kriti Sanon",
+  "Shraddha Kapoor",
+  "Disha Patani",
+  "Ananya Panday",
+  "Janhvi Kapoor",
+  "Sara Ali Khan",
+  "Triptii Dimri",
+  "Rashmika Mandanna",
+  "Taapsee Pannu",
+  "Kangana Ranaut",
+  "Vidya Balan",
+  "Aishwarya Rai Bachchan",
+  "Madhuri Dixit",
+  "Kajol",
+  "Rani Mukerji",
+  "Shilpa Shetty",
+  "Sushmita Sen",
+  "Sonam Kapoor",
+  "Sonakshi Sinha",
+  "Parineeti Chopra",
+  "Bhumi Pednekar",
+  "Yami Gautam",
+  "Mrunal Thakur",
+  "Pooja Hegde",
+  "Diana Penty",
+  "Nora Fatehi",
+  "Mouni Roy",
+  "Rakul Preet Singh",
+  "Tamannaah Bhatia",
+  "Vaani Kapoor",
+  "Kriti Kharbanda",
+  "Aditi Rao Hydari",
+  "Sanya Malhotra",
+  "Fatima Sana Shaikh",
+  "Radhika Apte",
+  "Huma Qureshi",
+  "Richa Chadha",
+  "Amrita Rao",
+  "Genelia D'Souza",
+  "Ileana D'Cruz",
+  "Neha Sharma",
+  "Shriya Saran",
+  "Ameesha Patel",
+  "Bipasha Basu",
+  "Urvashi Rautela",
+  "Esha Gupta",
+  "Nimrat Kaur",
+  "Konkona Sen Sharma",
+  "Ayesha Takia",
+  "Dia Mirza",
+  "Mahima Chaudhry",
+  "Preity Zinta",
+  "Tabu",
+  "Dimple Kapadia",
+  "Raveena Tandon",
+  "Juhi Chawla",
+  "Manisha Koirala",
+  "Amrita Singh",
+
+  // Telugu cinema
+  "Samantha Ruth Prabhu",
+  "Anushka Shetty",
+  "Sai Pallavi",
+  "Rashmika Mandanna",
+  "Pooja Hegde",
+  "Sreeleela",
+  "Krithi Shetty",
+  "Nivetha Thomas",
+  "Ritu Varma",
+  "Lavanya Tripathi",
+  "Meenakshi Chaudhary",
+  "Dimple Hayathi",
+  "Eesha Rebba",
+  "Faria Abdullah",
+  "Anjali",
+  "Catherine Tresa",
+  "Raashi Khanna",
+  "Nabha Natesh",
+  "Shanvi Srivastava",
+  "Payal Rajput",
+  "Hebah Patel",
+  "Rakul Preet Singh",
+  "Kajal Aggarwal",
+  "Tamannaah Bhatia",
+  "Pranitha Subhash",
+  "Nidhhi Agerwal",
+  "Aishwarya Rajesh",
+  "Sonal Chauhan",
+  "Shruti Haasan",
+  "Hansika Motwani",
+  "Renu Desai",
+  "Bhumika Chawla",
+
+  // Tamil cinema
+  "Nayanthara",
+  "Trisha Krishnan",
+  "Keerthy Suresh",
+  "Jyothika",
+  "Sai Pallavi",
+  "Amala Paul",
+  "Aishwarya Lekshmi",
+  "Aishwarya Rajesh",
+  "Andrea Jeremiah",
+  "Ritika Singh",
+  "Priya Bhavani Shankar",
+  "Ivana",
+  "Aparna Balamurali",
+  "Malavika Mohanan",
+  "Madonna Sebastian",
+  "Manju Warrier",
+  "Regina Cassandra",
+  "Nivetha Pethuraj",
+  "Varalaxmi Sarathkumar",
+  "Ramya Krishnan",
+  "Simran",
+  "Sneha",
+  "Laila",
+  "Meena",
+  "Devayani",
+  "Gauthami",
+  "Khushbu Sundar",
+  "Radhika Sarathkumar",
+  "Suhasini Maniratnam",
+  "Revathi",
+  "Rohini",
+  "Abhirami",
+  "Anu Emmanuel",
+  "Priya Anand",
+  "Shalini Pandey",
+  "Anupama Parameswaran",
+
+  // Malayalam cinema
+  "Manju Warrier",
+  "Parvathy Thiruvothu",
+  "Nazriya Nazim",
+  "Nimisha Sajayan",
+  "Kalyani Priyadarshan",
+  "Aishwarya Lekshmi",
+  "Anna Ben",
+  "Grace Antony",
+  "Rajisha Vijayan",
+  "Darshana Rajendran",
+  "Mamta Mohandas",
+  "Bhavana",
+  "Samyuktha Menon",
+  "Anaswara Rajan",
+  "Shobana",
+  "Urvashi",
+  "Meera Jasmine",
+  "Kavya Madhavan",
+  "Nikhila Vimal",
+  "Aparna Balamurali",
+  "Lena",
+  "Rima Kallingal",
+  "Swasika",
+  "Vincy Aloshious",
+  "Ahaana Krishna",
+  "Priya Prakash Varrier",
+
+  // Kannada cinema
+  "Rashmika Mandanna",
+  "Rachita Ram",
+  "Srinidhi Shetty",
+  "Ashika Ranganath",
+  "Krishi Thapanda",
+  "Hariprriya",
+  "Aindrita Ray",
+  "Radhika Pandit",
+  "Ramya",
+  "Sanjana Anand",
+  "Nabha Natesh",
+  "Shanvi Srivastava",
+  "Milana Nagaraj",
+  "Sreeleela",
+  "Amulya",
+  "Bhavana Menon",
+  "Priya Mani",
+  "Pooja Gandhi",
+  "Parul Yadav",
+  "Meghana Raj",
+
+  // Indian television and digital celebrities
+  "Jennifer Winget",
+  "Hina Khan",
+  "Mouni Roy",
+  "Divyanka Tripathi",
+  "Surbhi Jyoti",
+  "Sanaya Irani",
+  "Drashti Dhami",
+  "Shweta Tiwari",
+  "Ankita Lokhande",
+  "Tejasswi Prakash",
+  "Rupali Ganguly",
+  "Nia Sharma",
+  "Avneet Kaur",
+  "Jannat Zubair",
+  "Shivangi Joshi",
+  "Erica Fernandes",
+  "Asha Negi",
+  "Kritika Kamra",
+  "Sakshi Tanwar",
+  "Prachi Desai",
+  "Mithila Palkar",
+  "Shreya Dhanwanthary",
+  "Ahsaas Channa",
+  "Sriti Jha",
+  "Aditi Sharma"
+].map(name => ({
+  name,
+  categories: ["Actors"]
+}));
+
+
+// =====================================================
+// ORIGINAL PEOPLE DATA
+// =====================================================
+
+const ORIGINAL_PEOPLE_DATA = [
+  "Mia Malkova",
+  "Lana Rhoades",
+  "Abella Danger",
+  "Nikki Benz",
+  "Angela White",
+  "Sophie Dee",
+  "Nicole Aniston",
+  "Kendra Sunderland",
+  "Sara Jay",
+  "Romi Rain",
+  "Alexis Texas",
+  "Valentina Nappi",
+  "Elsa Jean",
+  "Adriana Chechik",
+  "Dani Daniels",
+  "Kate Kuray",
+  "Asa Akira",
+  "Tori Black",
+  "Madison Ivy",
+  "Gina Valentina",
+  "Julia Ann",
+  "Brandi Love",
+  "Veronica Rodriguez",
+  "Rachel Starr",
+  "Maitland Ward",
+  "Karlee Grey",
+  "Jayden Jaymes",
+  "Teanna Trump",
+  "Alina Lopez",
+  "Kimmy Granger",
+  "Aletta Ocean",
+  "Eva Lovia",
+  "Alexis Fawx",
+  "Vicky Vette",
+  "Emily Willis",
+  "Autumn Falls",
+  "Stormy Daniels",
+  "Jessa Rhodes",
+  "Cherie Deville",
+  "Dillion Harper",
+  "Gianna Dior",
+  "Nikki Delano",
+  "Jesse Jane",
+  "Carter Cruise",
+  "Kayden Kross",
+  "Tanya Tate",
+  "Ariana Marie",
+  "Samantha Saint",
+  "Kenzie Reeves",
+  "Gabbie Carter",
+  "Natalia Starr",
+  "Jada Stevens",
+  "Nina Hartley",
+  "Piper Perri",
+  "Vicki Chase",
+  "Moriah Mills",
+  "Kiara Mia",
+  "Phoenix Marie",
+  "Rose Monroe",
+  "Eva Notty",
+  "Kissa Sins",
+  "Luna Star",
+  "Kaylani Lei",
+  "Whitney Wright",
+  "Aaliyah Hadid",
+  "Gianna Michaels",
+  "Bonnie Rotten",
+  "Joanna Angel",
+  "Alura Jenson",
+  "Bridgette B",
+  "Lela Star",
+  "Raven Bay",
+  "Riley Steele",
+  "Kali Roses",
+  "Natasha Nice",
+  "Sarah Vandella",
+  "Jill Kassidy",
+  "Tiffany Watson",
+  "Kirsten Price",
+  "Skyla Novea",
+  "Richelle Ryan",
+  "Janice Griffith",
+  "Sheena Ryder",
+  "Tina Kay",
+  "Mandy Muse",
+  "Sheila Ortega",
+  "Blair Williams",
+  "Eliza Ibarra",
+  "Veronica Avluv",
+  "Scarlett Sage",
+  "Katrina Jade"
+].map(name => ({
+  name,
+  categories: ["Actors"]
+}));
+
+
+// =====================================================
+// COMBINE DATA — LATEST ENTRIES FIRST + REMOVE DUPLICATES
+// =====================================================
+
 const PEOPLE_DATA = [
-  { name: "Mia Malkova", categories: ["Actors"] },
-  { name: "Lana Rhoades", categories: ["Actors"] },
-  { name: "Abella Danger", categories: ["Actors"] },
-  { name: "Nikki Benz", categories: ["Actors"] },
-  { name: "Angela White", categories: ["Actors"] },
-  { name: "Sophie Dee", categories: ["Actors"] },
-  { name: "Nicole Aniston", categories: ["Actors"] },
-  { name: "Kendra Sunderland", categories: ["Actors"] },
-  { name: "Sara Jay", categories: ["Actors"] },
-  { name: "Romi Rain", categories: ["Actors"] },
-  { name: "Alexis Texas", categories: ["Actors"] },
-  { name: "Valentina Nappi", categories: ["Actors"] },
-  { name: "Elsa Jean", categories: ["Actors"] },
-  { name: "Adriana Chechik", categories: ["Actors"] },
-  { name: "Dani Daniels", categories: ["Actors"] },
-  { name: "Kate Kuray", categories: ["Actors"] },
-  { name: "Asa Akira", categories: ["Actors"] },
-  { name: "Tori Black", categories: ["Actors"] },
-  { name: "Madison Ivy", categories: ["Actors"] },
-  { name: "Gina Valentina", categories: ["Actors"] },
-  { name: "Julia Ann", categories: ["Actors"] },
-  { name: "Brandi Love", categories: ["Actors"] },
-  { name: "Veronica Rodriguez", categories: ["Actors"] },
-  { name: "Rachel Starr", categories: ["Actors"] },
-  { name: "Maitland Ward", categories: ["Actors"] },
-  { name: "Karlee Grey", categories: ["Actors"] },
-  { name: "Jayden Jaymes", categories: ["Actors"] },
-  { name: "Teanna Trump", categories: ["Actors"] },
-  { name: "Alina Lopez", categories: ["Actors"] },
-  { name: "Kimmy Granger", categories: ["Actors"] },
-  { name: "Aletta Ocean", categories: ["Actors"] },
-  { name: "Eva Lovia", categories: ["Actors"] },
-  { name: "Alexis Fawx", categories: ["Actors"] },
-  { name: "Vicky Vette", categories: ["Actors"] },
-  { name: "Emily Willis", categories: ["Actors"] },
-  { name: "Autumn Falls", categories: ["Actors"] },
-  { name: "Stormy Daniels", categories: ["Actors"] },
-  { name: "Jessa Rhodes", categories: ["Actors"] },
-  { name: "Cherie Deville", categories: ["Actors"] },
-  { name: "Dillion Harper", categories: ["Actors"] },
-  { name: "Gianna Dior", categories: ["Actors"] },
-  { name: "Nikki Delano", categories: ["Actors"] },
-  { name: "Jesse Jane", categories: ["Actors"] },
-  { name: "Carter Cruise", categories: ["Actors"] },
-  { name: "Kayden Kross", categories: ["Actors"] },
-  { name: "Tanya Tate", categories: ["Actors"] },
-  { name: "Ariana Marie", categories: ["Actors"] },
-  { name: "Samantha Saint", categories: ["Actors"] },
-  { name: "Kenzie Reeves", categories: ["Actors"] },
-  { name: "Gabbie Carter", categories: ["Actors"] },
-  { name: "Natalia Starr", categories: ["Actors"] },
-  { name: "Jada Stevens", categories: ["Actors"] },
-  { name: "Nina Hartley", categories: ["Actors"] },
-  { name: "Piper Perri", categories: ["Actors"] },
-  { name: "Vicki Chase", categories: ["Actors"] },
-  { name: "Moriah Mills", categories: ["Actors"] },
-  { name: "Kiara Mia", categories: ["Actors"] },
-  { name: "Phoenix Marie", categories: ["Actors"] },
-  { name: "Rose Monroe", categories: ["Actors"] },
-  { name: "Eva Notty", categories: ["Actors"] },
-  { name: "Kissa Sins", categories: ["Actors"] },
-  { name: "Luna Star", categories: ["Actors"] },
-  { name: "Kaylani Lei", categories: ["Actors"] },
-  { name: "Whitney Wright", categories: ["Actors"] },
-  { name: "Aaliyah Hadid", categories: ["Actors"] },
-  { name: "Gianna Michaels", categories: ["Actors"] },
-  { name: "Bonnie Rotten", categories: ["Actors"] },
-  { name: "Joanna Angel", categories: ["Actors"] },
-  { name: "Alura Jenson", categories: ["Actors"] },
-  { name: "Bridgette B", categories: ["Actors"] },
-  { name: "Lela Star", categories: ["Actors"] },
-  { name: "Raven Bay", categories: ["Actors"] },
-  { name: "Riley Steele", categories: ["Actors"] },
-  { name: "Kali Roses", categories: ["Actors"] },
-  { name: "Natasha Nice", categories: ["Actors"] },
-  { name: "Sarah Vandella", categories: ["Actors"] },
-  { name: "Jill Kassidy", categories: ["Actors"] },
-  { name: "Tiffany Watson", categories: ["Actors"] },
-  { name: "Kirsten Price", categories: ["Actors"] },
-  { name: "Skyla Novea", categories: ["Actors"] },
-  { name: "Richelle Ryan", categories: ["Actors"] },
-  { name: "Janice Griffith", categories: ["Actors"] },
-  { name: "Sheena Ryder", categories: ["Actors"] },
-  { name: "Tina Kay", categories: ["Actors"] },
-  { name: "Mandy Muse", categories: ["Actors"] },
-  { name: "Sheila Ortega", categories: ["Actors"] },
-  { name: "Blair Williams", categories: ["Actors"] },
-  { name: "Eliza Ibarra", categories: ["Actors"] },
-  { name: "Veronica Avluv", categories: ["Actors"] },
-  { name: "Scarlett Sage", categories: ["Actors"] },
-  { name: "Katrina Jade", categories: ["Actors"] }
+  ...new Map(
+    [...LATEST_ENTRIES, ...ORIGINAL_PEOPLE_DATA].map(person => [
+      person.name.toLocaleLowerCase().trim(),
+      person
+    ])
+  ).values()
 ];
 
-const ADDITIONAL_NAMES = [
-  "Julie Cash",
-  "Lisa Ann",
-  "Anya Olsen",
-  "Karmen Karma",
-  "Nyomi Banxxx",
-  "Naomi Woods",
-  "Victoria June",
-  "Gina Gerson",
-  "Marley Brinx",
-  "Francesca Le",
-  "Zoey Monroe",
-  "Jaclyn Taylor",
-  "Molly Stewart",
-  "Jelena Jensen",
-  "Melody Marks",
-  "Kesha Ortega",
-  "Jayden Cole",
-  "Shyla Jennings",
-  "Kira Noir",
-  "Kelly Divine",
-  "Ella Hughes",
-  "Misha Cross",
-  "Stella Cox",
-  "Noelle Easton",
-  "Valentina Jewels",
-  "Mia Melano",
-  "Jessica Drake",
-  "Sheridan Love",
-  "AJ Applegate",
-  "Kenna James",
-  "Syren Demer",
-  "Lauren Phillips",
-  "Lady Dee",
-  "Gabriella Paltrova",
-  "Karla Kush",
-  "Katie Morgan",
-  "Kayla Kayden",
-  "Skin Diamond",
-  "Riley Reyes",
-  "Misty Stone",
-  "Khloe Kapri",
-  "Jane Wilde",
-  "Athena Faris",
-  "Kelly Madison",
-  "Kenzie Taylor",
-  "Maddy O'Reilly",
-  "Uma Jolie",
-  "Joslyn James",
-  "Penny Pax",
-  "Ivy Lebelle",
-  "Lena Nitro",
-  "Anikka Albrite",
-  "Krissy Lynn",
-  "Darcie Dolce",
-  "Kristina Rose",
-  "Maya Bijou",
-  "Aaliyah Love",
-  "Jessie Volt",
-  "Nina North",
-  "Jordi Pollo",
-  "Anny Aurora",
-  "Jillian Janson",
-  "Paige Owens",
-  "Britney Amber",
-  "Abigail Mac",
-  "Lily LaBeau",
-  "Georgia Jones",
-  "Kendra Spade",
-  "Gia Paige",
-  "Sydney Cole",
-  "Lana Rain",
-  "Brooklyn Chase",
-  "Rebecca Volpetti",
-  "Morgan Lee",
-  "Julia Roca",
-  "Chanel Preston",
-  "Jodi West",
-  "Lacy Lennon",
-  "Shooting Star",
-  "Emma Hix",
-  "Aidra Fox",
-  "Sarah Jessie",
-  "Alexis Monroe",
-  "Rharri Rhound",
-  "Samantha Rone",
-  "Lena Paul",
-  "Kimber James",
-  "Holly Hendrix",
-  "Nia Nacci",
-  "Claudia Marie",
-  "Canela Skin",
-  "Jennifer White",
-  "Brett Rossi",
-  "Dana DeArmond",
-  "Amirah Adara",
-  "Jojo Kiss",
-  "Elena Koshka",
-  "Evelyn Claire",
-  "Tia Cyrus",
-  "Kenzie Madison",
-  "Chloe Cherry",
-  "Scarlit Scandal",
-  "Casey Calvert",
-  "Cali Carter",
-  "Ella Knox",
-  "Skylar Snow",
-  "Charlotte Sartre",
-  "Alex Grey",
-  "Lyra Law",
-  "Giselle Palmer",
-  "Anissa Kate",
-  "Ashley Adams",
-  "Gracie Glam",
-  "Cathy Heaven",
-  "Zoe Bloom",
-  "Riley Star",
-  "Honey Gold",
-  "Ana Foxxx",
-  "Franceska Jaimes",
-  "Naomi Swann",
-  "Kate England",
-  "Deauxma",
-  "Stacy Cruz",
-  "Joseline Kelly",
-  "Katrina Moreno",
-  "Reena Sky",
-  "Kiki Minaj",
-  "Dana Vespoli",
-  "Lena Spanks",
-  "Silvia Saige",
-  "Cadence Lux",
-  "Vienna Black",
-  "Veronica Vain",
-  "Arietta Adams",
-  "Riley Nixon",
-  "Kiara Cole",
-  "Maggie Green",
-  "Aiden Starr",
-  "Kyler Quinn",
-  "Savannah Sixx",
-  "Texas Patti",
-  "Proxy Paige",
-  "Mona Wales",
-  "Mia Khalifa",
-  "Comattoze"
-];
 
-const people = [
-  ...PEOPLE_DATA,
-  ...ADDITIONAL_NAMES.map(name => ({
-    name,
-    categories: ["Actors"]
-  }))
-];
+// =====================================================
+// FRAME GALLERY — WIKIMEDIA COMMONS IMAGE SEARCH
+// =====================================================
 
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
+const people = PEOPLE_DATA;
 const PAGE_SIZE = 20;
 
 const state = {
@@ -265,6 +369,11 @@ const resultCount = document.getElementById("resultCount");
 const emptyState = document.getElementById("emptyState");
 const loadMore = document.getElementById("loadMore");
 const apiNotice = document.getElementById("apiNotice");
+
+
+// =====================================================
+// HELPER FUNCTIONS
+// =====================================================
 
 function initials(name) {
   return name
@@ -290,6 +399,11 @@ function filteredPeople() {
   });
 }
 
+
+// =====================================================
+// RENDER GALLERY
+// =====================================================
+
 function render() {
   const matches = filteredPeople();
   const visible = matches.slice(0, state.visible);
@@ -308,6 +422,11 @@ function render() {
 
   loadVisibleImages();
 }
+
+
+// =====================================================
+// CREATE CELEBRITY CARD
+// =====================================================
 
 function createCard(person) {
   const card = document.createElement("article");
@@ -342,6 +461,11 @@ function createCard(person) {
   return card;
 }
 
+
+// =====================================================
+// DISPLAY IMAGE
+// =====================================================
+
 function showImage(wrap, image) {
   const link = document.createElement("a");
 
@@ -368,19 +492,27 @@ function showImage(wrap, image) {
 
     if (!wrap.querySelector(".photo-fallback")) {
       const fallback = document.createElement("div");
+
       fallback.className = "photo-fallback";
       fallback.textContent = initials(wrap.dataset.person);
+
       wrap.prepend(fallback);
     }
   };
 
   const badge = document.createElement("span");
+
   badge.className = "photo-source";
   badge.textContent = "WIKIMEDIA COMMONS";
 
   link.append(img, badge);
   wrap.replaceChildren(link);
 }
+
+
+// =====================================================
+// NORMALIZE NAMES FOR MATCHING
+// =====================================================
 
 function normalize(value) {
   return value
@@ -390,6 +522,11 @@ function normalize(value) {
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 }
+
+
+// =====================================================
+// CHECK WHETHER IMAGE NAME MATCHES CELEBRITY NAME
+// =====================================================
 
 function isStrongNameMatch(title, name) {
   const fileTitle = normalize(title.replace(/^File:/i, ""));
@@ -411,6 +548,11 @@ function isStrongNameMatch(title, name) {
   );
 }
 
+
+// =====================================================
+// SEARCH WIKIMEDIA COMMONS
+// =====================================================
+
 async function findCommonsImage(name) {
   const params = new URLSearchParams({
     action: "query",
@@ -425,9 +567,7 @@ async function findCommonsImage(name) {
     origin: "*"
   });
 
-  const response = await fetch(
-    `${COMMONS_API}?${params}`
-  );
+  const response = await fetch(`${COMMONS_API}?${params}`);
 
   if (!response.ok) {
     throw new Error(
@@ -436,10 +576,7 @@ async function findCommonsImage(name) {
   }
 
   const data = await response.json();
-
-  const pages = Object.values(
-    data.query?.pages || {}
-  );
+  const pages = Object.values(data.query?.pages || {});
 
   const match = pages.find(page =>
     page.imageinfo?.[0]?.thumburl &&
@@ -463,10 +600,13 @@ async function findCommonsImage(name) {
   };
 }
 
+
+// =====================================================
+// LOAD IMAGES FOR VISIBLE CARDS
+// =====================================================
+
 async function loadVisibleImages() {
-  const wraps = [
-    ...grid.querySelectorAll(".photo-wrap")
-  ];
+  const wraps = [...grid.querySelectorAll(".photo-wrap")];
 
   for (const wrap of wraps) {
     const name = wrap.dataset.person;
@@ -505,49 +645,68 @@ async function loadVisibleImages() {
   }
 }
 
-// Search functionality
+
+// =====================================================
+// SEARCH INPUT
+// =====================================================
+
 searchInput.addEventListener("input", event => {
   state.query = event.target.value;
   state.visible = PAGE_SIZE;
   render();
 });
 
-// Clear search
+
+// =====================================================
+// CLEAR SEARCH
+// =====================================================
+
 document
   .getElementById("clearSearch")
   .addEventListener("click", () => {
     searchInput.value = "";
     state.query = "";
     state.visible = PAGE_SIZE;
+
     render();
     searchInput.focus();
   });
 
-// Category filters
-document
-  .querySelectorAll(".filter-chip")
-  .forEach(button => {
-    button.addEventListener("click", () => {
-      document
-        .querySelector(".filter-chip.selected")
-        ?.classList.remove("selected");
 
-      button.classList.add("selected");
+// =====================================================
+// CATEGORY FILTERS
+// =====================================================
 
-      state.category = button.dataset.category;
-      state.visible = PAGE_SIZE;
+document.querySelectorAll(".filter-chip").forEach(button => {
+  button.addEventListener("click", () => {
+    document
+      .querySelector(".filter-chip.selected")
+      ?.classList.remove("selected");
 
-      render();
-    });
+    button.classList.add("selected");
+
+    state.category = button.dataset.category;
+    state.visible = PAGE_SIZE;
+
+    render();
   });
+});
 
-// Load more
+
+// =====================================================
+// LOAD MORE BUTTON
+// =====================================================
+
 loadMore.addEventListener("click", () => {
   state.visible += PAGE_SIZE;
   render();
 });
 
-// Keyboard shortcut: Ctrl + K
+
+// =====================================================
+// KEYBOARD SHORTCUT — CTRL + K / CMD + K
+// =====================================================
+
 document.addEventListener("keydown", event => {
   if (
     (event.metaKey || event.ctrlKey) &&
@@ -558,7 +717,11 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// Footer year
+
+// =====================================================
+// INITIALIZE GALLERY
+// =====================================================
+
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
@@ -566,5 +729,9 @@ if (apiNotice) {
   apiNotice.hidden = true;
 }
 
-// Initial rendering
 render();
+
+
+// Wikimedia Commons may not contain a correctly matched
+// image for every person. In that case, the card keeps
+// its initials placeholder.
