@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <meta name="description" content="A searchable entertainment photo directory.">
+  <title>FRAME — Celebrity Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="FRAME home"><span class="brand-mark">F</span><span>FRAME<span class="brand-dot">.</span></span></a>
+    <nav aria-label="Main navigation">
+      <a class="active" href="#home">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="nav-cta" href="#gallery">Explore gallery <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> THE ENTERTAINMENT DIRECTORY</p>
+        <h1>Faces worth<br><span>knowing.</span></h1>
+        <p class="hero-sub">Discover familiar names and explore the people shaping entertainment and pop culture.</p>
+        <a class="hero-link" href="#gallery">Explore the collection <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-monogram">F<span>.</span></div>
+        <div class="floating-tag tag-top">CULTURE / PEOPLE</div>
+        <div class="floating-tag tag-bottom">A CURATED DIRECTORY</div>
+      </div>
+      <div class="hero-index"><span>01</span> / DISCOVER</div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="section-heading">
+        <div><p class="eyebrow">BROWSE THE DIRECTORY</p><h2>Explore <span>the faces.</span></h2></div>
+        <p class="result-count" id="resultCount" aria-live="polite">Loading collection…</p>
+      </div>
+      <div class="toolbar">
+        <label class="search-box">
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search by celebrity name…" autocomplete="off">
+          <kbd>⌘ K</kbd>
+        </label>
+        <button class="clear-btn" id="clearSearch" type="button">Clear</button>
+      </div>
+      <div class="filters" id="categories" aria-label="Filter by category">
+        <button class="filter-chip selected" data-category="All" type="button">All people</button>
+        <button class="filter-chip" data-category="Bollywood" type="button">Bollywood</button>
+        <button class="filter-chip" data-category="Hollywood" type="button">Hollywood</button>
+        <button class="filter-chip" data-category="Sports" type="button">Sports</button>
+        <button class="filter-chip" data-category="Singers" type="button">Singers</button>
+        <button class="filter-chip" data-category="Actors" type="button">Actors</button>
+        <button class="filter-chip" data-category="Models" type="button">Models</button>
+      </div>
+      <div class="notice" id="apiNotice">
+        <strong>Images from Wikimedia Commons.</strong> No API key is required. Some people may not have a suitable,
+        correctly matched Commons image; those cards keep their initials rather than showing unrelated images.
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="empty-state" id="emptyState" hidden><span>⌕</span><h3>No matches found</h3><p>Try another name or select a different category.</p></div>
+      <div class="load-row"><button class="load-more" id="loadMore" type="button" hidden>Load more <span>↓</span></button></div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div><p class="eyebrow">ABOUT FRAME</p><h2>A directory for<br><span>curious minds.</span></h2></div>
+      <p>FRAME is a searchable directory built to help visitors discover public figures by name and category. Image results are searched on Wikimedia Commons and remain hosted by Wikimedia. Open each image source to review its license and attribution requirements.</p>
+    </section>
+  </main>
+  <footer><a class="brand" href="#"><span class="brand-mark">F</span><span>FRAME<span class="brand-dot">.</span></span></a><span>Images belong to their respective rights holders.</span><span>© <span id="year"></span> FRAME DIRECTORY</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
