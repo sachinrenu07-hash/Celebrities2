@@ -1,3 +1,4 @@
+
 /*
   FRAME CELEBRITY GALLERY
   Latest Indian celebrity entries appear FIRST.
@@ -6,8 +7,7 @@
 */
 
 // =====================================================
-// LATEST ENTRIES — INDIAN FEMALE CELEBRITIES
-// These appear at the beginning of the gallery.
+// HEROINES — INDIAN FEMALE CELEBRITIES
 // =====================================================
 
 const LATEST_ENTRIES = [
@@ -227,12 +227,12 @@ const LATEST_ENTRIES = [
   "Aditi Sharma"
 ].map(name => ({
   name,
-  categories: ["Actors"]
+  categories: ["Heroines"]
 }));
 
 
 // =====================================================
-// ORIGINAL PEOPLE DATA
+// ANGELS — ORIGINAL PEOPLE DATA
 // =====================================================
 
 const ORIGINAL_PEOPLE_DATA = [
@@ -329,7 +329,7 @@ const ORIGINAL_PEOPLE_DATA = [
   "Katrina Jade"
 ].map(name => ({
   name,
-  categories: ["Actors"]
+  categories: ["Angels"]
 }));
 
 
