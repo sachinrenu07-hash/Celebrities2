@@ -11,7 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -94,7 +97,6 @@
     </section>
 
 
-
     <!-- GALLERY SECTION -->
     <section class="gallery-section" id="gallery">
 
@@ -112,7 +114,6 @@
       </div>
 
 
-
       <!-- SEARCH BAR -->
       <div class="toolbar">
 
@@ -125,18 +126,22 @@
             type="search"
             placeholder="Search by celebrity name…"
             autocomplete="off"
+            aria-label="Search celebrities"
           >
 
-          <kbd>⌘ K</kbd>
+          <kbd>Ctrl / ⌘ K</kbd>
 
         </label>
 
-        <button class="clear-btn" id="clearSearch" type="button">
+        <button
+          class="clear-btn"
+          id="clearSearch"
+          type="button"
+        >
           Clear
         </button>
 
       </div>
-
 
 
       <!-- CATEGORY FILTERS -->
@@ -150,6 +155,7 @@
           class="filter-chip selected"
           data-category="All"
           type="button"
+          aria-pressed="true"
         >
           All people
         </button>
@@ -158,6 +164,7 @@
           class="filter-chip"
           data-category="Heroines"
           type="button"
+          aria-pressed="false"
         >
           Heroines
         </button>
@@ -166,12 +173,12 @@
           class="filter-chip"
           data-category="Angels"
           type="button"
+          aria-pressed="false"
         >
           Angels
         </button>
 
       </div>
-
 
 
       <!-- IMAGE SOURCE NOTICE -->
@@ -186,10 +193,12 @@
       </div>
 
 
-
       <!-- CELEBRITY GRID -->
-      <div class="gallery-grid" id="galleryGrid"></div>
-
+      <div
+        class="gallery-grid"
+        id="galleryGrid"
+        aria-live="polite"
+      ></div>
 
 
       <!-- EMPTY SEARCH RESULT -->
@@ -204,7 +213,6 @@
         </p>
 
       </div>
-
 
 
       <!-- LOAD MORE -->
@@ -222,7 +230,6 @@
       </div>
 
     </section>
-
 
 
     <!-- ABOUT SECTION -->
@@ -252,7 +259,6 @@
   </main>
 
 
-
   <!-- FOOTER -->
   <footer>
 
@@ -273,7 +279,6 @@
     </span>
 
   </footer>
-
 
 
   <!-- JAVASCRIPT -->
